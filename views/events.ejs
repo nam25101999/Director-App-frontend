@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Sự kiện</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <%- include('partials/header') %>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Danh Sách Sự Kiện</h2>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>ID</th>
+            <th>Tiêu đề</th>
+            <th>Mô tả</th>
+            <th>Thời gian</th>
+            <th>Địa điểm</th>
+            <th>Người tổ chức</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (events.length === 0) { %>
+            <tr><td colspan="7" class="text-center">Không có sự kiện nào.</td></tr>
+          <% } else { %>
+            <% events.forEach(e => { %>
+              <tr>
+                <td><%= e.EventID %></td>
+                <td><%= e.Title %></td>
+                <td><%= e.Description || '' %></td>
+                <td><%= e.EventDate %></td>
+                <td><%= e.Location || '-' %></td>
+                <td><%= e.Organizer || '-' %></td>
+                <td><span class="badge bg-<%= getStatusColor(e.Status) %>"><%= e.Status %></span></td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Hàm inline để hiển thị màu trạng thái
+    function getStatusColor(status) {
+      switch (status) {
+        case 'Scheduled': return 'primary';
+        case 'Ongoing': return 'warning';
+        case 'Completed': return 'success';
+        case 'Cancelled': return 'danger';
+        default: return 'secondary';
+      }
+    }
+  </script>
+  <%- include('partials/footer') %>
+</body>
+</html>

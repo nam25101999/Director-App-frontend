@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/">🎯 Director App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDirector" aria-controls="navbarDirector" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarDirector">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- Báo cáo tổng hợp -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle multiline-center" href="#" id="reportsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+            📊 Báo cáo tổng hợp
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
+            <li><a class="dropdown-item" href="/grades">🎓 Điểm học tập</a></li>
+            <li><a class="dropdown-item" href="/test-scores">📝 Kết quả kiểm tra</a></li>
+            <li><a class="dropdown-item" href="/internship-registrations">📋 Đăng ký thực tập</a></li>
+            <li><a class="dropdown-item" href="/internship-reports">🗂️ Báo cáo thực tập</a></li>
+            <li><a class="dropdown-item" href="/teacher-assignments">👩‍🏫 Phân công giảng dạy</a></li>
+            <li><a class="dropdown-item" href="/teaching-schedule">📆 Lịch giảng dạy</a></li>
+          </ul>
+        </li>
+
+        <!-- KPI & Chất lượng -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle multiline-center" href="#" id="kpiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+            📈 KPI <wbr>&<wbr> Chất lượng
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="kpiDropdown">
+            <li><a class="dropdown-item" href="/kpi-performance">📊 KPI</a></li>
+            <li><a class="dropdown-item" href="/quality-assessments">🔍 Đánh giá chất lượng</a></li>
+          </ul>
+        </li>
+
+        <!-- AI Analytics -->
+        <li class="nav-item">
+          <a class="nav-link multiline-center" href="/ai-analytics">🤖 AI Analytics</a>
+        </li>
+
+        <!-- Khảo sát & phản hồi -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle multiline-center" href="#" id="surveyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+            📋 Khảo sát <wbr>&<wbr> Phản hồi
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="surveyDropdown">
+            <li><a class="dropdown-item" href="/surveys">📄 Khảo sát</a></li>
+            <li><a class="dropdown-item" href="/feedback">💬 Phản hồi</a></li>
+          </ul>
+        </li>
+
+        <!-- Cựu sinh viên & Sự kiện -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle multiline-center" href="#" id="alumniDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+            🎓 Cựu sinh viên <wbr>&<wbr> Sự kiện
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="alumniDropdown">
+            <li><a class="dropdown-item" href="/alumni">👥 Cựu sinh viên</a></li>
+            <li><a class="dropdown-item" href="/events">📅 Sự kiện</a></li>
+            <li><a class="dropdown-item" href="/event-registrations">📝 Đăng ký sự kiện</a></li>
+          </ul>
+        </li>
+
+        <!-- Thông báo -->
+        <li class="nav-item">
+          <a class="nav-link multiline-center" href="/notifications">🔔 Thông báo</a>
+        </li>
+
+      </ul>
+
+      <% if (session && session.user) { %> 
+        <div class="dropdown ms-auto">
+            <a class="btn btn-outline-light dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Profile Icon" width="24" height="24" class="me-2" />
+            <%= session.user.username %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/profile">👤 Thông tin cá nhân</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <form action="/logout" method="POST" class="d-inline">
+                <button type="submit" class="dropdown-item">🚪 Đăng xuất</button>
+                </form>
+            </li>
+            </ul>
+        </div>
+    <% } %>
+    </div>
+  </div>
+</nav>

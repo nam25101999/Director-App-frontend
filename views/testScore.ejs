@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bảng điểm kiểm tra</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <%- include('partials/header') %>
+  <div class="container my-5">
+    <h1 class="mb-4 text-center">📋 Bảng điểm kiểm tra sinh viên</h1>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-primary">
+          <tr>
+            <th scope="col">TestID</th>
+            <th scope="col">StudentID</th>
+            <th scope="col">Môn học</th>
+            <th scope="col">Ngày kiểm tra</th>
+            <th scope="col">Điểm</th>
+            <th scope="col">Điểm tối đa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (testScores.length === 0) { %>
+            <tr>
+              <td colspan="6" class="text-center">Không có dữ liệu điểm kiểm tra.</td>
+            </tr>
+          <% } else { %>
+            <% testScores.forEach(item => { %>
+              <tr>
+                <td><%= item.TestID %></td>
+                <td><%= item.StudentID %></td>
+                <td><%= item.Subject %></td>
+                <td><%= new Date(item.TestDate).toLocaleDateString('vi-VN') %></td>
+                <td><%= item.Score %></td>
+                <td><%= item.MaxScore %></td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+</html>

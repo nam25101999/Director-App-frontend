@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phân công giáo viên</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <%- include('partials/header') %>
+  <div class="container my-5">
+    <h1 class="mb-4 text-center">👩‍🏫 Danh sách phân công giáo viên</h1>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">AssignmentID</th>
+            <th scope="col">TeacherID</th>
+            <th scope="col">CourseID</th>
+            <th scope="col">ClassName</th>
+            <th scope="col">AcademicYear</th>
+            <th scope="col">Semester</th>
+            <th scope="col">AssignedDate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (assignments.length === 0) { %>
+            <tr>
+              <td colspan="7" class="text-center">Không có phân công giáo viên nào.</td>
+            </tr>
+          <% } else { %>
+            <% assignments.forEach(assign => { %>
+              <tr>
+                <td><%= assign.AssignmentID %></td>
+                <td><%= assign.TeacherID %></td>
+                <td><%= assign.CourseID %></td>
+                <td><%= assign.ClassName %></td>
+                <td><%= assign.AcademicYear %></td>
+                <td><%= assign.Semester %></td>
+                <td><%= new Date(assign.AssignedDate).toLocaleDateString('vi-VN') %></td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+</html>

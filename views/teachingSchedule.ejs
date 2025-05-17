@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lịch giảng dạy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <%- include('partials/header') %>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">🗓️ Lịch Giảng Dạy</h1>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">ScheduleID</th>
+            <th scope="col">AssignmentID</th>
+            <th scope="col">DayOfWeek</th>
+            <th scope="col">StartTime</th>
+            <th scope="col">EndTime</th>
+            <th scope="col">Room</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (schedule.length === 0) { %>
+            <tr>
+              <td colspan="6" class="text-center">Không có lịch giảng dạy nào.</td>
+            </tr>
+          <% } else { %>
+            <% schedule.forEach(item => { %>
+              <tr>
+                <td><%= item.ScheduleID %></td>
+                <td><%= item.AssignmentID %></td>
+                <td><%= item.DayOfWeek %></td>
+                <td><%= item.StartTime %></td>
+                <td><%= item.EndTime %></td>
+                <td><%= item.Room %></td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+</html>
