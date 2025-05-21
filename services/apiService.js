@@ -1,14 +1,18 @@
 const axios = require('axios');
-const BASE_URL = process.env.API_URL || 'http://localhost:5000/api';
 
-const getData = async (endpoint) => {
-  try {
-    const response = await axios.get(`${BASE_URL}${endpoint}`);
-    return response.data;
-  } catch (error) {
-    console.error(`Lỗi khi gọi API ${endpoint}:`, error.message);
-    return [];
+const api = axios.create({
+  baseURL: 'http://localhost:8000/api', // Đã có /api ở đây
+  timeout: 5000,
+});
+
+module.exports = {
+  getData: async (endpoint) => {
+    try {
+      const response = await api.get(endpoint);
+      return response.data; // Chỉ trả về .data là đủ
+    } catch (error) {
+      console.error(`❌ Lỗi khi gọi API ${endpoint}:`, error.response?.data || error.message);
+      throw error;
+    }
   }
 };
-
-module.exports = { getData };

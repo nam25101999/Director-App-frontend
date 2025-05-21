@@ -47,10 +47,6 @@ const eventRegistrationRoutes = require('./routes/eventRegistrations');
 const notificationRoutes = require('./routes/notifications');
 
 
-
-
-
-
 // 🚪 Các route không yêu cầu đăng nhập
 app.use('/', authRouter);
 

@@ -5,8 +5,7 @@ const api = require('../services/apiService');
 // GET /events - Hiển thị danh sách sự kiện
 router.get('/events', async (req, res) => {
   try {
-    const response = await api.getData('/events'); // gọi tới API backend
-    const events = response.data || response;
+    const events = await api.getData('/events'); // lấy dữ liệu trực tiếp
 
     res.render('events', { events });
   } catch (error) {

@@ -4,7 +4,7 @@ const api = require('../services/apiService');
 
 router.get('/quality-assessments', async (req, res) => {
   try {
-    const response = await api.getData('/quality-assessments'); // gọi tới API backend
+    const response = await api.getData('/qualityassessmentresults'); // gọi tới API backend
     const results = response.data || response;
 
     res.render('qualityAssessments', { results });

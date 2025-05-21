@@ -5,7 +5,7 @@ const api = require('../services/apiService');
 
 router.get('/teacher-assignments', async (req, res) => {
   try {
-    const response = await api.getData('/teacher-assignments');
+    const response = await api.getData('/teacherassignments');
     const assignments = response.data || response;
 
     res.render('teacherAssignments', { assignments });
